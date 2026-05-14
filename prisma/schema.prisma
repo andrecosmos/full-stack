@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+enum StatusPedido {
+  PENDENTE
+  PAGO
+  ENVIADO
+  ENTREGUE
+  CANCELADO
+}
+
+model Categoria {
+  id      Int       @id @default(autoincrement())
+  nome    String    @unique
+  Produto Produto[]
+}
+
+model Produto {
+  id          Int          @id @default(autoincrement())
+  nome        String
+  preco       Float
+  categoriaId Int
+  descricao   String
+  imagem      String?
+  Categoria   Categoria    @relation(fields: [categoriaId], references: [id])
+  itens       ItemPedido[]
+}
+
+// Adicione este modelo para corrigir o erro P1012
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  nome    String?
+  pedidos Pedido[]
+}
+
+model Pedido {
+  id           Int          @id @default(autoincrement())
+  dataCriacao  DateTime     @default(now())
+  status       StatusPedido @default(PENDENTE)
+  total        Float
+  
+  // Agora o User existe, então a validação passará
+  userId       Int?         
+  user         User?        @relation(fields: [userId], references: [id])
+  
+  itens        ItemPedido[]
+}
+
+model ItemPedido {
+  id         Int     @id @default(autoincrement())
+  quantidade Int
+  precoFixo  Float   
+  
+  pedidoId   Int
+  pedido     Pedido  @relation(fields: [pedidoId], references: [id])
+  
+  produtoId  Int
+  produto    Produto @relation(fields: [produtoId], references: [id])
+}

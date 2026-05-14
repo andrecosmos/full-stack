@@ -1,0 +1,99 @@
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+
+
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  
+}
+
+.listar-produtos {
+  
+ margin-top: 100px;
+}
+
+.listar-produtos h2 {
+  min-height: 70px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 2.5vw, 2.4rem);
+  text-align: center;
+  color: #f1f3f7;
+  letter-spacing: 0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 20px;
+  align-items: stretch;
+}
+
+.grid .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.grid .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+}
+
+.grid .card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+}
+
+.linha {
+  margin-bottom: 0.75rem;
+  color: #5514ee;
+}
+
+.btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: #f2f2f5;
+  color :#0d0d0e;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .listar-produtos {
+    padding-top: 16px;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+}
+
+
+

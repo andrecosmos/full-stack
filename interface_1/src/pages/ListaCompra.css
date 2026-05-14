@@ -1,0 +1,165 @@
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* TÍTULO */
+.titulo {
+  margin-bottom: 20px;
+  font-size: 28px;
+  text-align: center;
+}
+
+/* GRID RESPONSIVO */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.192);
+  transition: 0.3s;
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* CONTEÚDO */
+.card-body h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* PREÇO */
+.preco {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2ecc71;
+  margin-bottom: 15px;
+}
+
+/* BOTÃO */
+.btn1 {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #f1ba04;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #2980b9;
+}
+
+/* RESPONSIVIDADE EXTRA */
+@media (max-width: 600px) {
+  .titulo {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
+
+/* Estilos para os detalhes dos itens */
+.itens-detalhes {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.itens-detalhes h4 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.itens-detalhes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-compra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.item-compra:last-child {
+  border-bottom: none;
+}
+
+.item-nome {
+  font-weight: 600;
+  color: #2c3e50;
+  flex: 1;
+  min-width: 150px;
+}
+
+.item-quantidade {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.item-preco {
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.item-subtotal {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status {
+  color: #8e44ad;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Responsividade para os itens */
+@media (max-width: 768px) {
+  .item-compra {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .item-nome {
+    min-width: auto;
+  }
+}
+
+
+

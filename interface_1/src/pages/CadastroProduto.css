@@ -1,0 +1,228 @@
+.container-cadastro {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 2rem;
+    min-height: calc(100vh - 60px);
+   
+    background: linear-gradient(135deg, #f5f7fa 0%, #aab7cc 100%);
+}
+
+.formulario-container {
+   background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+.form-group input.input-error,
+.form-group textarea.input-error,
+.form-group select.input-error {
+    border-color: #75f171;
+    background-color: #f0f0f0;
+}
+
+.form-group input.input-error:focus,
+.form-group textarea.input-error:focus,
+.form-group select.input-error:focus {
+    border-color: #4936f4;
+    box-shadow: 0 0 8px rgba(8, 71, 189, 0.2);
+}
+
+.erro-texto {
+    color: #f44336;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.botoes-container{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    
+}
+
+
+.btn-submit {
+    padding: 0.95rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.listar {
+    padding: 0.95rem;
+    background-color: #aab7cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #45a049;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.message.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.message.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-cadastro {
+        padding: 1rem;
+    }
+
+    .formulario-container {
+        padding: 1.5rem;
+    }
+
+    .formulario-container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .formulario {
+        gap: 1rem;
+    }
+
+    .form-group {
+        gap: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.65rem;
+        font-size: 16px;
+    }
+}
+
+/* Responsividade para celulares pequenos */
+@media (max-width: 480px) {
+    .container-cadastro {
+        padding: 0.5rem;
+        min-height: auto;
+    }
+
+    .formulario-container {
+        padding: 1rem;
+        border-radius: 6px;
+    }
+
+    .formulario-container h1 {
+        font-size: 1.25rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .formulario {
+        gap: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.6rem;
+        font-size: 16px;
+    }
+
+    .btn-submit {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+    }
+}
