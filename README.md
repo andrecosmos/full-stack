@@ -77,4 +77,4 @@ Uma aplicação de e-commerce completa, escalável e segura, desenvolvida para s
 
 ## 🧑‍💻 Autor
 
-* **André Cosmos** - [Seu LinkedIn](https://linkedin.com) / andrecosmos@email.com
+* **André Cosmos** - [LinkedIn](https://linkedin.com/in/andre-cosmos-b95480a1/) / andrecosmos@email.com
