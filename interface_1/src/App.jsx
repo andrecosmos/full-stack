@@ -9,12 +9,15 @@ import Navbar from './layout/Navibar'
 import Footer from './layout/Footer'
 import Product from './pages/Product'
 import { CarrinhoProvider } from './context/CarrinhoContext';
-
+import Login from './pages/Login'
+import Register from './pages/Register'
+import { AuthProvider } from './context/AuthContext';
 function App() {
   
 
   return (
     <div className="app">
+      <AuthProvider>
       <CarrinhoProvider>
        
      <Router>
@@ -26,12 +29,15 @@ function App() {
           <Route path="/comprar"    element={<CadastroCompra />} />
           <Route path="/listar"     element={<ListaCompra />} />
           <Route path="/produtos/:id"        element={<Product />} />
+          <Route path="/login"    element={<Login/>} />
+          <Route path="/cadastre-se" element={<Register />} />
         </Routes>
 
        <Footer />
       </Router>
       
       </CarrinhoProvider>
+      </AuthProvider>
    </div>
   )
 }
