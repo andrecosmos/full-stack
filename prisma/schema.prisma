@@ -34,13 +34,14 @@ model Produto {
   itens       ItemPedido[]
 }
 
-// Adicione este modelo para corrigir o erro P1012
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  nome    String?
-  pedidos Pedido[]
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  name     String   // Alterado de 'nome' para 'name' (obrigatório)
+  password String   // Adicionado o campo de senha criptografada
+  pedidos  Pedido[]
 }
+
 
 model Pedido {
   id           Int          @id @default(autoincrement())

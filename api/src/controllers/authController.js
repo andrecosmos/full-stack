@@ -1,48 +1,80 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { PrismaClient } = require('@prisma/client');
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
+
 
 const prisma = new PrismaClient();
 
+// === FLUXO DE REGISTRO (ADICIONADO) ===
+const register = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Por favor, preencha todos os campos.' });
+    }
+
+    const userExists = await prisma.user.findUnique({ where: { email } });
+    if (userExists) {
+      return res.status(409).json({ error: 'Este e-mail já está cadastrado.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    return res.status(201).json({
+      message: 'Usuário registrado com sucesso!',
+      user: { id: newUser.id, name: newUser.name, email: newUser.email }
+    });
+
+  } catch (error) {
+    console.error('Erro no registro do Prisma:', error);
+    return res.status(500).json({ error: 'Erro interno no servidor ao salvar dados.' });
+  }
+};
+
+// === FLUXO DE LOGIN ===
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Validação básica de campos recebidos
     if (!email || !password) {
       return res.status(400).json({ error: 'E-mail e senha são obrigatórios.' });
     }
 
-    // 2. Busca o usuário no banco de dados via Prisma
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return res.status(401).json({ error: 'Credenciais inválidas.' });
     }
 
-    // 3. Verifica se a senha informada bate com o hash salvo no banco
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ error: 'Credenciais inválidas.' });
     }
 
-    // 4. Cria o payload (dados do usuário) e gera o token JWT
     const payload = { 
       id: user.id, 
       email: user.email, 
-      role: user.role || 'client' 
+      role: 'client' // Removido user.role temporariamente pois não existe no seu schema.prisma
     };
     
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-    // 5. Configura as opções do Cookie Seguro (Regras de Ouro de Segurança)
     const cookieOptions = {
-      httpOnly: true, // Impede leitura via JavaScript (Protege contra XSS)
-      secure: process.env.NODE_ENV === 'production', // true apenas em produção (HTTPS)
-      sameSite: 'strict', // Protege contra ataques CSRF
-      maxAge: 7 * 24 * 60 * 60 * 1000 // Tempo de vida do cookie: 7 dias (em milissegundos)
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000
     };
 
-    // 6. Envia o cookie na resposta HTTP e retorna os dados públicos do usuário
     return res
       .cookie('token', token, cookieOptions)
       .status(200)
@@ -57,7 +89,7 @@ const login = async (req, res) => {
   }
 };
 
-// Rota auxiliar recomendada: Rota de Logout para limpar o cookie
+// === FLUXO DE LOGOUT ===
 const logout = (req, res) => {
   return res
     .clearCookie('token')
@@ -65,4 +97,5 @@ const logout = (req, res) => {
     .json({ message: 'Logout realizado com sucesso.' });
 };
 
-module.exports = { login, logout };
+// Exporta as três funções juntas para as rotas consumirem
+module.exports = { register, login, logout };

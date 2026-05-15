@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+
+
 import express from "express";
 import cors from "cors";
 import produtoRoutes from "./api/src/routes/produto.js";
