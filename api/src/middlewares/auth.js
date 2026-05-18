@@ -1,4 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+
+
 
 const authMiddleware = (req, res, next) => {
   // 1. Busca o token dentro dos cookies seguros da requisição
@@ -31,4 +33,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

@@ -92,10 +92,17 @@ const login = async (req, res) => {
 // === FLUXO DE LOGOUT ===
 const logout = (req, res) => {
   return res
-    .clearCookie('token')
+    .clearCookie('token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax', // Deve coincidir com a configuração usada no login
+      path: '/' // Garante a remoção do cookie em todo o domínio
+    }
+
+    )
     .status(200)
     .json({ message: 'Logout realizado com sucesso.' });
 };
 
 // Exporta as três funções juntas para as rotas consumirem
-module.exports = { register, login, logout };
+export { register, login, logout };

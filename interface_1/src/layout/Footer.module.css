@@ -4,6 +4,7 @@
   background: linear-gradient(to bottom,hsl(0, 0%, 100%), hsl(118, 49%, 78%));
   color: rgb(42, 128, 3);
   margin-top: auto;
+  width :  100%;
 } 
 
 .footer p {

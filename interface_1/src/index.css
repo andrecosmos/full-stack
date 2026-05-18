@@ -18,3 +18,22 @@ h1 {
   font-size: 28px;
   margin: 20px 0;
 }
+
+.btn-detalhes {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  background: #16f003;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-detalhes:hover {
+  background: #f2f2f5;
+  color :#0d0d0e;
+  transform: translateY(-1px);
+}

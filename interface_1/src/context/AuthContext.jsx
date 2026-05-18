@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout, authenticated: !!user }}>
-      {children}
+      {!loading && children} {/* SÓ RENDERIZA O APP APÓS CHECAR SE ESTÁ LOGADO */}
     </AuthContext.Provider>
   );
 };

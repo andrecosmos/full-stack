@@ -1,3 +1,14 @@
-#center {
-  width: 100%;
+/* Configura o container pai para ocupar a tela inteira */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Garante o espaçamento do topo e empurra o rodapé */
+.main-content {
+  padding-top: 130px; /* Altura combinada do Header + Navbar */
+  flex: 1; /* Faz esse bloco crescer e mandar o footer para o fim */
+  padding-left: 20px;
+  padding-right: 20px;
 }

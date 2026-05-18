@@ -20,6 +20,11 @@ export function CarrinhoProvider({ children }) {
   // Atualiza o contador se o usuário recarregar a página manualmente
   useEffect(() => {
     atualizarContador();
+    // Ouve alterações no localStorage vindas de outras abas/janelas
+    window.addEventListener('storage', atualizarContador);
+    
+    // Limpa o escutador quando o componente desmontar
+    return () => window.removeEventListener('storage', atualizarContador);
   }, []);
 
   return (

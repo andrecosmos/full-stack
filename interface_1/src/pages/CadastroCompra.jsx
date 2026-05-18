@@ -2,8 +2,12 @@ import React, { useState, useEffect, useContext } from 'react'; // ADICIONADO: u
 import { postCompras } from '../api/compraApi';
 import { CarrinhoContext } from '../context/CarrinhoContext'; // ADICIONADO: import do contexto
 import './CadastroCompra.css';
+import { useAuth } from '../context/AuthContext'; // ADICIONE ESTA IMPORTAÇÃO
+import { useNavigate } from 'react-router-dom'; // ADICIONE ESTA IMPORTAÇÃO
 
 function CadastroCompra() {
+    const { authenticated } = useAuth(); // Puxa o estado de autenticação
+    const navigate = useNavigate(); // Instancia o redirecionador
     const [loading, setLoading] = useState(false);
     const [mensagem, setMensagem] = useState({ tipo: '', texto: '' });
     
@@ -46,6 +50,21 @@ function CadastroCompra() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 1. SE NÃO ESTIVER LOGADO: Redireciona para o login de forma amigável
+        if (!authenticated) {
+            setMensagem({ 
+                tipo: 'erro', 
+                texto: 'Você precisa estar logado para finalizar a compra! Redirecionando...' 
+            });
+            
+            // Aguarda 2 segundos para o usuário ler a mensagem e o envia para o login
+            setTimeout(() => {
+                navigate('/login', { state: { from: '/comprar' } }); // Redireciona para o login e passa a rota de origem
+            }, 2000);
+            return;
+        }
+
         
         if (carrinho.length === 0) {
             setMensagem({ tipo: 'erro', texto: 'O carrinho está vazio!' });

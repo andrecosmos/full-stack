@@ -15,7 +15,9 @@ const Login = () => {
   const location = useLocation();
 
   // Captura se o usuário tentou acessar uma rota protegida antes (ex: /checkout)
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from|| '/';
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
