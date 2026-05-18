@@ -24,6 +24,15 @@ Uma aplicação de e-commerce completa, escalável e segura, desenvolvida para s
 * **HttpOnly Cookies**: Proteção ativa contra ataques XSS armazenando tokens fora do localStorage.
 * **Bcrypt**: Criptografia de senhas (hashing) antes da persistência no banco de dados.
 * **Dotenv**: Isolamento estrito de variáveis de ambiente sensíveis.
+*  **Criptografia** de Senhas com a biblioteca bcrypt no Node.js.
+*  **Emissão do JWT** Utilização da biblioteca jsonwebtoken.
+*  **Armazenamento Seguro (Frontend)** com o token JWT Armazenado em um Cookie HttpOnly e não no LocalStorage.
+*  **Middleware de Autenticação** com um arquivo de middleware (auth.js) para interceptar rotas protegidas (como finalização de compra ou histórico de pedidos). Ele deve ler o cookie, validar o JWT e injetar os dados do usuário na requisição (req.user).
+*  **CORS Restrito** Requisições são aceitas apenas de URLs restritas.
+
+
+
+
 
 ---
 
@@ -33,6 +42,7 @@ Uma aplicação de e-commerce completa, escalável e segura, desenvolvida para s
 - [x] Autenticação e proteção de rotas críticas via middleware JWT.
 - [x] Catálogo de produtos dinâmico integrado ao banco de dados.
 - [x] Gerenciamento de carrinho de compras com persistência de estado.
+- [ ] Listagem de Pedidos
 - [ ] Integração com gateway de pagamento (Próxima etapa).
 
 ---
