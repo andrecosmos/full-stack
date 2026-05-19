@@ -24,13 +24,19 @@ li {
 }
 
 li a {
-  color: rgb(22, 22, 22);
-  text-decoration: none;
+  background: #222;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 li a:hover {
-  color: #fdfdfa;
+  background: #fffefe;
+  color: #222;
 }
 
 .menu {
@@ -42,7 +48,7 @@ li a:hover {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 979px) {
   .menu {
     display: none;
   }
@@ -53,7 +59,7 @@ li a:hover {
     top: 70px;
     left: 0;
     width: 100%;
-    background: hsl(61, 87%, 57%);
+    background: hsl(60, 9%, 98%);
     padding: 10px 0;
     gap: 10px;
     z-index: 99;
@@ -62,7 +68,7 @@ li a:hover {
     display: block;
     background: none;
     border: none;
-    color: white;
+    color: rgb(12, 12, 12);
     font-size: 1.5rem;
     cursor: pointer;
   }
@@ -78,3 +84,4 @@ li a:hover {
   height: 85px;
   width: auto;
 }
+

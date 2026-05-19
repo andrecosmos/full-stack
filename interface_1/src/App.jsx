@@ -6,6 +6,8 @@ import ListarProduto from './pages/ListarProduto'
 import ListaCompra from './pages/ListaCompra'
 import CadastroProduto from './pages/CadastroProduto'
 import CadastroCompra from './pages/CadastroCompra' 
+import ProdutoCategoria from './pages/ProdutoCategoria'
+
 
 import TopContainer from './layout/TopContainer'
 import Footer from './layout/Footer'
@@ -13,7 +15,6 @@ import Product from './pages/Product'
 
 import Login from './pages/Login'
 import Register from './pages/Register'
-
 
 
 import PrivateRoute from './components/PrivateRoute'; 
@@ -35,6 +36,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastre-se" element={<Register />} />
                 <Route path="/comprar" element={<CadastroCompra />} />
+                <Route path="/produtos/categoria/:categoriaId" element={<ProdutoCategoria />} />
+                
 
                 {/* Rotas Protegidas */}
                 <Route path="/cadastrar" element={

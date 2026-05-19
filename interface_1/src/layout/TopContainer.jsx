@@ -1,7 +1,6 @@
 import Header from './Header';
 import Navbar from './Navibar'
 
-
 const Layout = () => {
   return (
     <div>

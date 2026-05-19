@@ -8,6 +8,13 @@ export async function getAll() {
   });
 }
 
+export async function getByCategoria(categoriaId) {
+  return await prisma.produto.findMany({
+    where: { categoriaId },
+    include: { Categoria: true }
+  });
+}
+
 export async function create(data) {
   // Validar se a categoria existe
   if (!data.categoriaId) {

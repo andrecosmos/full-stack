@@ -9,6 +9,16 @@ export async function listarProdutos(req, res) {
   }
 }
 
+export async function ListarProdutosPorCategoria(req,res){
+  const categoriaId = parseInt(req.params.categoriaId);
+  try {
+    const produtos = await produtoService.getByCategoria(categoriaId);
+    res.json(produtos);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar produtos : " + error.message });
+  }
+}
+
 export async function criarProduto(req, res) {
   try {
     const produto = await produtoService.create(req.body);

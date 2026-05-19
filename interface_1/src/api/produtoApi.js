@@ -1,3 +1,4 @@
+// 🟢 Removido o import do express daqui!
 const API_URL = "http://localhost:3000";
 
 export async function getAll() {
@@ -7,6 +8,16 @@ export async function getAll() {
   }
   return await response.json();
 }
+
+export async function getByCategoria(categoriaId) {
+  // 🟢 Certo: Corrigido adicionando /produtos/ antes de categoria
+  const response = await fetch(`${API_URL}/produtos/categoria/${categoriaId}`);
+  if (!response.ok) {
+    throw new Error("Erro ao buscar produtos por categoria");
+  }
+  return await response.json();
+}
+
 
 export async function create(data) {
   // Validações básicas

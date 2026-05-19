@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import logo from '../assets/logo1.png'
 import { CarrinhoContext } from '../context/CarrinhoContext';
+import CategoriaMenu from './CategoriaMenu';
 
 function Navbar() {
 
@@ -11,40 +12,20 @@ function Navbar() {
   const { quantidadeTotal } = useContext(CarrinhoContext);
   const [open, setOpen] = useState(false)
   const [count, setCount] = useState(0)
-
-  const [search, setSearch] = useState('')
-  const navigate = useNavigate()
-
-  function handleSearch(e) {
-    e.preventDefault()
-
-    if (!search) return
-
-    navigate(`/?search=${search}`)
-  }
-
   
-
   return (
     <nav className={styles.navbar}>
       <Link to="/" className={styles.logoLink}>
         <img src={logo} alt="AutoSystem Logo" className={styles.logoImg} />
       </Link>
-
-      <form className={styles.search} onSubmit={handleSearch}>
-        <input 
-          type="text"
-          placeholder="Buscar peças..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </form>
-
+       <CategoriaMenu />
       <ul className={`${styles.menu} ${open ? styles.active : ''}`}>
+        
         <li><Link to="/">Home</Link></li>
         <li><Link to="/listar">Dashboard</Link></li>
         <li><Link to="/produtos">Produtos</Link></li>
         <li><Link to="/cadastrar">Cadastrar Produto</Link></li>
+        
         <li>
           <Link to="/comprar">
             🛒 Carrinho 
